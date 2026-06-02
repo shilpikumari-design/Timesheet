@@ -1,0 +1,74 @@
+<template>
+
+    <lightning-card title="Working Days">
+
+        <div class="slds-p-around_medium">
+
+            <table class="slds-table slds-table_bordered
+                          slds-table_cell-buffer
+                          slds-table_striped">
+
+                <thead class="slds-theme_shade">
+
+                    <tr>
+                        <th>Select</th>
+                        <th>Date</th>
+                        <th>Day</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <template for:each={workingDays} for:item="day">
+
+                        <tr key={day.fullDate}>
+
+                            <!-- RADIO BUTTON -->
+                            <td>
+
+                                <lightning-input
+                                    type="radio"
+                                    name="workingDay"
+                                    value={day.fullDate}
+                                    onchange={handleDateSelect}>
+                                </lightning-input>
+
+                            </td>
+
+                            <!-- DATE -->
+                            <td>{day.fullDate}</td>
+
+                            <!-- DAY -->
+                            <td>{day.dayName}</td>
+
+                        </tr>
+
+                    </template>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </lightning-card>
+
+    <!-- SHOW SELECTED DATE -->
+    <div class="slds-m-top_medium slds-text-heading_small">
+
+        <b>Selected Date:</b> {selectedDate}
+
+    </div>
+
+    <!-- TIMECARD COMPONENT -->
+    <template if:true={selectedDate}>
+
+        <c-timecard-entry-component
+            selected-date={selectedDate}
+            timesheet-id={timesheetId}>
+        </c-timecard-entry-component>
+
+    </template>
+
+</template>
