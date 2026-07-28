@@ -1,0 +1,121 @@
+<template>
+
+    <lightning-card title="Timesheet Component"
+      icon-name="standard:budget">
+
+        <div class="slds-p-around_medium"
+          >
+
+            <!-- MONTH -->
+            <lightning-combobox
+                label="Month"
+                value={selectedMonth}
+                options={monthOptions}
+                onchange={handleMonthChange}>
+            </lightning-combobox>
+
+            <!-- YEAR -->
+            <lightning-combobox
+                label="Year"
+                value={selectedYear}
+                options={yearOptions}
+                onchange={handleYearChange}
+                class="slds-m-top_small">
+            </lightning-combobox>
+
+            <!-- SUBMIT -->
+            <div class="slds-m-top_medium">
+                <lightning-button
+                    label="Submit"
+                    variant="brand"
+                    onclick={handleSubmit}>
+                </lightning-button>
+            </div>
+
+            <!-- TABLE -->
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-m-top_medium">
+
+                <thead class="slds-theme_shade">
+                    <tr>
+                        <th>Select</th>
+                        <th>Month</th>
+                        <th>Year</th>
+                        <th>Name</th>
+                        <th>Sheet Number</th>
+                        <th>Week Start</th>
+                        <th>Week End</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <template for:each={data} for:item="item">
+
+                        <tr key={item.Id}>
+
+                            <!-- RADIO -->
+                            <td>
+                                <lightning-input
+                                    type="radio"
+                                    name="selectRow"
+                                    data-id={item.Id}
+                                    data-start={item.Week_StartDate__c}
+                                    data-end={item.Week_EndDate__c}
+                                    onchange={handleRowSelection}>
+                                </lightning-input>
+                            </td>
+
+                            <td>{item.Months__c}</td>
+                            <td>{item.Year__c}</td>
+                            <td>{item.Name}</td>
+                            <td>{item.Sheet_Number__c}</td>
+                            <td>{item.Week_StartDate__c}</td>
+                            <td>{item.Week_EndDate__c}</td>
+                            <td>{item.Status__c}</td>
+
+                            <!-- SUBMIT -->
+                            <td>
+                                <lightning-button
+                                    label="Submit"
+                                    variant="brand"
+                                    data-id={item.Id}
+                                    onclick={handleRowSubmit}>
+                                </lightning-button>
+                            </td>
+
+                        </tr>
+
+                    </template>
+
+                </tbody>
+
+            </table>
+
+            <!-- WORKING DAYS -->
+            <template if:true={selectedStartDate}>
+
+                <c-working-days-component
+                    start-date={selectedStartDate}
+                    end-date={selectedEndDate}
+                    ondateselect={handleDateSelect}>
+                </c-working-days-component>
+
+            </template>
+
+            <!-- TIMECARD -->
+            <template if:true={selectedWorkingDate}>
+
+                <c-timecard-entry-component
+                    selected-date={selectedWorkingDate}
+                    timesheet-id={selectedTimesheetId}>
+                </c-timecard-entry-component>
+
+            </template>
+
+        </div>
+
+    </lightning-card>
+
+</template>

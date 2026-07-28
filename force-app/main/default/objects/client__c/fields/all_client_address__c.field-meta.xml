@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>all_client_address__c</fullName>
+    <label>all_client_address</label>
+    <summaryFilterItems>
+        <field>Address__c.City__c</field>
+        <operation>equals</operation>
+        <value>Nagpur</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Address__c.City__c</field>
+        <operation>equals</operation>
+        <value>Surat</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Address__c.Client__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

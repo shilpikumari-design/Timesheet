@@ -1,0 +1,33 @@
+<template>
+    <lightning-card title="Dealer Performance">
+
+        <div class="slds-grid slds-wrap slds-p-around_small">
+
+            <!-- Forecast -->
+            <div class="slds-col slds-size_1-of-3 slds-p-around_small">
+                <div class="tile">
+                    <p class="label">Forecast Quantity</p>
+                    <p class="value">{forecastQty}</p>
+                </div>
+            </div>
+
+            <!-- Actual -->
+            <div class="slds-col slds-size_1-of-3 slds-p-around_small">
+                <div class="tile">
+                    <p class="label">Actual Quantity</p>
+                    <p class="value">{actualQty}</p>
+                </div>
+            </div>
+
+            <!-- Achievement -->
+            <div class="slds-col slds-size_1-of-3 slds-p-around_small">
+                <div class="tile highlight">
+                    <p class="label">Achievement %</p>
+                    <p class="value">{achievement}%</p>
+                </div>
+            </div>
+
+        </div>
+
+    </lightning-card>
+</template>

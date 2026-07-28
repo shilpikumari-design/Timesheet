@@ -1,0 +1,41 @@
+<template>
+    <lightning-card title="Customer 360 Overview">
+
+        <div class="slds-grid slds-wrap slds-p-around_small">
+
+            <!-- Open Cases -->
+            <div class="slds-col slds-size_1-of-4 slds-p-around_small">
+                <div class="tile">
+                    <p class="label">Open Cases</p>
+                    <p class="value">{openCases}</p>
+                </div>
+            </div>
+
+            <!-- Open Opportunities -->
+            <div class="slds-col slds-size_1-of-4 slds-p-around_small">
+                <div class="tile">
+                    <p class="label">Open Opportunities</p>
+                    <p class="value">{openOpps}</p>
+                </div>
+            </div>
+
+            <!-- Active Agreements -->
+            <div class="slds-col slds-size_1-of-4 slds-p-around_small">
+                <div class="tile">
+                    <p class="label">Active Agreements</p>
+                    <p class="value">{activeAgreements}</p>
+                </div>
+            </div>
+
+            <!-- Pipeline Amount -->
+            <div class="slds-col slds-size_1-of-4 slds-p-around_small">
+                <div class="tile">
+                    <p class="label">Pipeline Amount</p>
+                    <p class="value">₹ {pipelineAmount}</p>
+                </div>
+            </div>
+
+        </div>
+
+    </lightning-card>
+</template>
