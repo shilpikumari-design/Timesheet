@@ -1,0 +1,156 @@
+
+<template>
+<!-- WORKING DAYS TABLE -->
+
+
+    <!-- TIMECARD ENTRY -->
+    <lightning-card
+        title="Time Card Details"
+        icon-name="standard:budget"
+        class="slds-p-around_large">
+
+        <div class="slds-p-around_medium">
+
+            <template for:each={items} for:item="item" for:index="index">
+
+                <div 
+                    key={item.id}
+                    class="slds-box slds-m-bottom_small slds-theme_shade">
+
+                    <lightning-layout multiple-rows="true">
+
+                        <!-- TASK NAME -->
+                        <lightning-layout-item size="6" padding="around-small">
+
+                            <lightning-combobox
+                                name="taskName"
+                                label="Select Task Type"
+                                value={item.taskName}
+                                placeholder="Select Task"
+                                options={taskNameOptions}
+                                data-id={item.id}
+                                data-field="taskName"
+                                onchange={handleInputChange}
+                                required>
+                            </lightning-combobox>
+
+                        </lightning-layout-item>
+
+
+                        <!-- STATUS -->
+                        <lightning-layout-item size="6" padding="around-small">
+
+                            <lightning-combobox
+                                name="status"
+                                label="Status Assigned"
+                                value={item.status}
+                                placeholder="Select Status"
+                                options={statusOptions}
+                                data-id={item.id}
+                                data-field="status"
+                                onchange={handleInputChange}
+                                required>
+                            </lightning-combobox>
+
+                        </lightning-layout-item>
+
+
+                        <!-- HOURS -->
+                        <lightning-layout-item size="6" padding="around-small">
+
+                            <lightning-input
+                                type="number"
+                                label="Hours"
+                                value={item.hours}
+                                data-id={item.id}
+                                data-field="hours"
+                                onchange={handleInputChange}
+                                required>
+                            </lightning-input>
+
+                        </lightning-layout-item>
+
+
+                        <!-- USER STORY -->
+                        <lightning-layout-item size="6" padding="around-small">
+
+                            <lightning-input
+                                type="text"
+                                label="User Story"
+                                value={item.userStory}
+                                data-id={item.id}
+                                data-field="userStory"
+                                onchange={handleInputChange}
+                                required>
+                            </lightning-input>
+
+                        </lightning-layout-item>
+
+                    </lightning-layout>
+
+
+                    <!-- COPY DELETE BUTTONS -->
+                    <div class="slds-m-top_medium">
+
+                        <lightning-button-icon
+                            icon-name="utility:copy"
+                            alternative-text="Copy"
+                            onclick={handleCopy}
+                            value={index}
+                            class="slds-m-right_small">
+                        </lightning-button-icon>
+
+                        <lightning-button-icon
+                            icon-name="utility:delete"
+                            alternative-text="Delete"
+                            onclick={handleDelete}
+                            value={index}>
+                        </lightning-button-icon>
+
+                    </div>
+
+                </div>
+
+            </template>
+
+
+            <!-- SUBMIT BUTTON -->
+            <div class="slds-m-top_medium">
+
+                <lightning-button
+    label="Submit"
+    variant="brand"
+    onclick={afterClick}>
+</lightning-button>
+
+            </div>
+
+        </div>
+
+    </lightning-card>
+
+
+    <!-- RECENT TIMECARDS -->
+    <lightning-card
+        title="Recent Time Card Records"
+        icon-name="standard:work_queue"
+        class="slds-p-around_large">
+
+        <div>
+
+            <template if:true={timeCard}>
+
+                <lightning-datatable
+                    key-field="Id"
+                    data={timeCard}
+                    columns={columns}>
+                </lightning-datatable>
+
+            </template>
+
+        </div>
+
+    </lightning-card>
+
+</template>
+
