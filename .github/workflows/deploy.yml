@@ -1,0 +1,28 @@
+name: Deploy to Salesforce
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Salesforce CLI
+        run: npm install --global @salesforce/cli
+
+      - name: Authenticate to Salesforce
+        run: |
+          echo "${{ secrets.SFDX_AUTH_URL }}" > ./SFDX_AUTH_URL.txt
+          sf org login sfdx-url --sfdx-url-file ./SFDX_AUTH_URL.txt --alias targetOrg --set-default
+
+      - name: Deploy source to org
+        run: sf project deploy start --target-org targetOrg --test-level RunLocalTests
+
+      - name: Clean up auth file
+        if: always()
+        run: rm -f ./SFDX_AUTH_URL.txt
