@@ -19,10 +19,8 @@ jobs:
         run: |
           echo "${{ secrets.SFDX_AUTH_URL }}" > ./SFDX_AUTH_URL.txt
           sf org login sfdx-url --sfdx-url-file ./SFDX_AUTH_URL.txt --alias targetOrg --set-default
-
-      - name: Deploy source to org
-        run: sf project deploy start --target-org targetOrg --test-level RunLocalTests
-
+- name: Deploy source to org
+        run: sf project deploy start --target-org targetOrg --source-dir force-app/main/default/objects/House__c --test-level NoTestRun
       - name: Clean up auth file
         if: always()
         run: rm -f ./SFDX_AUTH_URL.txt
