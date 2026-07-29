@@ -10,3 +10,17 @@ package.xml
 node_modules
 force-app/main/default/lwc/myFirstLwc/Customerviews/
 force-app/main/default/lwc/myFirstLwc/Timesheet Component/
+
+
+force-app/main/default/classes/CommunitiesSelfRegController.cls
+force-app/main/default/classes/CommunitiesSelfRegController.cls-meta.xml
+force-app/main/default/classes/MicrobatchSelfRegController.cls
+force-app/main/default/classes/MicrobatchSelfRegController.cls-meta.xml
+
+
+force-app/main/default/classes/AccountConsoleController.cls
+force-app/main/default/classes/AccountConsoleController.cls-meta.xml
+force-app/main/default/classes/AccountContactTesting.cls
+force-app/main/default/classes/AccountContactTesting.cls-meta.xml
+force-app/main/default/classes/MicrobatchSelfRegControllerTest.cls
+force-app/main/default/classes/MicrobatchSelfRegControllerTest.cls-meta.xml
